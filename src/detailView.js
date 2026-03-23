@@ -43,14 +43,20 @@ function getHeaderHtml(data) {
 
 function getHourlyHtml(data) {
   const hours = data.forecast.forecastday[0].hour;
+  const currentHour = new Date().getHours();
 
-  const itemsHtml = hours
+  const filteredHours = hours.filter(function (hour) {
+    const hourTime = parseInt(hour.time.split(" ")[1]);
+    return hourTime >= currentHour;
+  });
+
+  const itemsHtml = filteredHours
     .map(function (hour) {
       return `<div class="hourly__item">
-      <span class="hourly__time">${hour.time.split(" ")[1]}</span>
-      <img class="hourly__icon" src="${hour.condition.icon}">
-      <span class="hourly__temp">${hour.temp_c}°</span>
-    </div>`;
+        <span class="hourly__time">${hour.time.split(" ")[1]}</span>
+        <img class="hourly__icon" src="${hour.condition.icon}">
+        <span class="hourly__temp">${hour.temp_c}°</span>
+      </div>`;
     })
     .join("");
 
