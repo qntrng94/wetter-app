@@ -1,0 +1,39 @@
+@import "mixins";
+@import "variables";
+@import "detailView";
+@import "loader";
+
+@import url("https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kaushan+Script&family=Londrina+Shadow&family=Londrina+Sketch&family=Rubik+Scribble&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  @include largeScreens {
+    background-color: limegreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: lighten($background, 10);
+  }
+}
+
+#app {
+  background: linear-gradient(0deg, $elevation2 0%, $background 50%);
+  color: $text-color;
+  padding: 1rem;
+  min-height: 100vh;
+  font-family: "inter", sans-serif;
+
+  @include largeScreens {
+    width: 400px;
+    height: 900px;
+    min-height: unset;
+    overflow: auto;
+    border-radius: 6px;
+    box-shadow: $box-shadow;
+  }
+}
